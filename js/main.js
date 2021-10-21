@@ -7,7 +7,7 @@ Write a function that parses through the below object and displays all of their
 favorite food dishes as shown:
 */
 
-let person3 = {
+let person = {
     pizza:["Deep Dish","South Side Thin Crust"],
     tacos:"Anything not from Taco bell",
     burgers:"Portillos Burgers",
@@ -28,11 +28,27 @@ let person3 = {
 // }   
 // console.log(displayFavorites(person3))
 
-for (let key in person3) {
-    console.log(person3[key])
-  };
 
-console.clear()
+// Bryans solution //
+for (let i =0; i < Object.keys(person).length; i ++){
+    if (Array.isArray(Object.values(person)[i])){
+        for (let j = 0; j < Object.values(person)[i].length; j++){
+            if(typeof(Object.values(person)[i][j]) === 'object'){
+                for (let k = 0; k < Object.keys(Object.values(person)[i][j]).length; k++){
+                    console.log(Object.values(Object.values(person)[i][j])[k])
+                } 
+                }
+                else {
+                    console.log(Object.values(person)[i][j])
+                }
+            }
+        } else{
+            console.log(Object.values(person)[i])
+        }
+    }
+
+
+// console.clear()
 //=======Exercise #2=========//
 /*
 Write an object prototype for a Person that has a name and age, has a
@@ -70,7 +86,7 @@ console.log(Dominick.ageAdd())
 
 
 
-// console.clear()
+console.clear()
 //=======Exercise #3=========//
 
 /*Write a function that takes in an array and removes every even index with a splice,
@@ -87,8 +103,8 @@ and replaces it with the string "even index" */
 // console.log(replaceEvens(["Max","Baseball","Reboot","Goku","Trucks","Rodger"]))
 
 function replaceEvens(arr){
-    for (let i = 0; i < arr.length; i++){
-        if (i % 2 === 0){
+    for (let i = 0; i = arr.length; i++){
+        if (i % 2 == 0){
             arr.splice(arr[i], 1, 'even index')
         }
         return arr
@@ -110,3 +126,17 @@ console.log(replaceEvens(["Max","Baseball","Reboot","Goku","Trucks","Rodger"]))
 //Expected output
 //Given arr == ["Max","Baseball","Reboot","Goku","Trucks","Rodger"]
 //Output arr == ["even index","Baseball","even index","Goku","even index","Rodger"]
+
+// console.clear()
+
+function friend(friends){
+    let friendsNew = []
+    for (let f = 0; f < friends.length; f++){
+      if (friends[f].length === 4)
+        friendsNew.push(friends[f]) 
+    }
+    return friendsNew
+  }
+console.log(friend(["Ryan", "Kieran", "Mark"]))
+console.log(friend(["Ryan", "Adam", "Jeremy", "Dominick", 'Luke', "Grace"]))
+console.log(friend(["Brian", "Dave", "Joanne"]))
